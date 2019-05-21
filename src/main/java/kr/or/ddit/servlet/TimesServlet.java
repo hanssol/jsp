@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jasper.tagplugins.jstl.core.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class TimesServlet extends HttpServlet {
+	
+	private Logger logger = LoggerFactory.getLogger(TimesServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -19,8 +24,11 @@ public class TimesServlet extends HttpServlet {
 		
 		// localhost/jsp/timesTables?param=7
 		String param = req.getParameter("i");
+		logger.debug("pram : {}" + param);
+		
 		String param2 = req.getParameter("j");
-		System.out.println("param : " + param);
+		logger.debug("pram2 : {}" + param2);
+//		System.out.println("param : " + param);
 		
 		
 		pw.write("<html>");
