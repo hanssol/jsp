@@ -28,12 +28,12 @@
 		String[] userIdsFromMap = parameterMap.get("userId");
 		String[] passwords = parameterMap.get("password");
 		for(String userId : userIdsFromMap){%>
-		<%=userId %><br>	
+		userIdFromMap : <%=userId %><br>	
 		<%
 		}
 		%>
 		<%for(String password : passwords){%>
-		<%=password %>	<br>
+		passwordFromMap : <%=password %>	<br>
 		<%
 		}
 		%>
