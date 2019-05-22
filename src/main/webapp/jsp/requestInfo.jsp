@@ -26,5 +26,10 @@
 	
 	<img src ="/jsp/img/sally.png">
 	
+	<%-- 파라미터 받기 --%>
+	request.getParameter("rangersName")  : <%=request.getParameter("rangersName") %> <br>
+	
+	
+	
 </body>
 </html>
