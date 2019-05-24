@@ -3,13 +3,13 @@ package kr.or.ddit.user.model;
 public class UserVo {
 	private String name;
 	private String userId;
-	private String alais;
+	private String alias;
 	
-	public UserVo(String name, String userId, String alais) {
+	public UserVo(String name, String userId, String alias) {
 		super();
 		this.name = name;
 		this.userId = userId;
-		this.alais = alais;
+		this.alias = alias;
 	}
 	
 	public UserVo(){
@@ -29,17 +29,17 @@ public class UserVo {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getAlais() {
-		return alais;
+	public String getalias() {
+		return alias;
 	}
-	public void setAlais(String alais) {
-		this.alais = alais;
+	public void setalias(String alias) {
+		this.alias = alias;
 	}
 	
 	@Override
 	public String toString() {
-		return "UserVo [name=" + name + ", userId=" + userId + ", alais="
-				+ alais + "]";
+		return "UserVo [name=" + name + ", userId=" + userId + ", alias="
+				+ alias + "]";
 	}
 	
 	
