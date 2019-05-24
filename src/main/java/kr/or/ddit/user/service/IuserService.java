@@ -15,4 +15,6 @@ public interface IuserService {
 	 * Method 설명 : 사용자 전체 리스트 조회
 	 */
 	List<UserVo> userList();
+	
+	UserVo getUser(String userId);
 }

@@ -20,9 +20,11 @@ public class UserDao implements IuserDao{
 
 		/***When***/
 		List<UserVo> userList = userDao.userList();
+		UserVo uservo = userDao.getUser("brown");
 		
 		/***Then***/
 		logger.debug("UserList : {}",userList);
+		logger.debug("UserInfo : {}",uservo );
 	}
 	
 	/**
@@ -39,5 +41,12 @@ public class UserDao implements IuserDao{
 		SqlSession sqlSession = MyBatisUtil.getSqlSession();
 		List<UserVo> userList = sqlSession.selectList("user.userList");
 		return userList;
+	}
+
+	@Override
+	public UserVo getUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		UserVo uservo = sqlSession.selectOne("user.userInfo",userId);
+		return uservo;
 	}
 }

@@ -29,5 +29,11 @@ public class UserService implements IuserService{
 		
 		return userList;
 	}
+
+	@Override
+	public UserVo getUser(String userId) {
+		UserVo uservo = new UserVo();
+		return uservo;
+	}
 	
 }
