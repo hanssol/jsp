@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.jws.soap.SOAPBinding.Use;
+
+import kr.or.ddit.paging.model.PageVo;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 
@@ -53,5 +57,52 @@ public class UserServiceTest {
 		logger.debug("userVo : {}", userVo);
 	}
 	
+	@Test
+	public void userPagingListTest(){
+		/***Given***/
+		PageVo pageVo = new PageVo(1,10);
+		
+
+		/***When***/
+		Map<String, Object> resultMap = userservice.userPagingList(pageVo);
+		List<UserVo> userList = (List<UserVo>) resultMap.get("userList");
+		int pagination = (Integer)resultMap.get("paginationSize");
+		
+		/***Then***/
+		// pagingList assert
+		assertNotNull(userList);
+		assertEquals(10, userList.size());
+		
+		// usersCnt assert
+		assertEquals(11, pagination);
+		
+	}
+	@Test
+	public void ceilTest(){
+		/***Given***/
+		int usersCnt = 105;
+		int pageSize = 10;
+		/***When***/
+		double paginationSize = Math.ceil((double)usersCnt/pageSize);
+		logger.debug("paginationSize : {}", paginationSize);
+		
+		/***Then***/
+		assertEquals(11, (int)paginationSize);
+
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

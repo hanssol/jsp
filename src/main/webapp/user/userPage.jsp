@@ -1,8 +1,7 @@
-<%@page import="kr.or.ddit.user.model.UserVo"%>
+<%@page import="kr.or.ddit.paging.model.PageVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +13,11 @@
 <meta name="author" content="">
 <link rel="icon" href="../../favicon.ico">
 
-<title>사용자리스트</title>
+<title>사용자 페이지 리스트</title>
 
 <!-- css,js -->
 <%@include file="/common/basicLib.jsp" %>
-
 </head>
-
 <body>
 	<!-- header -->
 	<%@include file="/common/header.jsp" %>
@@ -58,14 +55,58 @@
 						</div>
 
 						<a class="btn btn-default pull-right">사용자 등록</a>
-
+						<!-- 사용자수 : 105건
+							페이지네이션 : 11건
+						 -->
 						<div class="text-center">
 							<ul class="pagination">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
+							<%
+								// 내가 현제 몇번째 페이지에 있는가?
+								PageVo pageVo = (PageVo)request.getAttribute("pageVo");
+								int paginationSize = (Integer)request.getAttribute("paginationSize"); 
+								%>
+							<%
+							if(pageVo.getPage() == 1){%>
+								<li class="disabled"><span>«</span></li>
+							<%}else{
+							%>
+								<li>
+								<a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage()-1%>&pageSize=<%=pageVo.getPageSize()%>">«</a>
+								</li>
+							<%} %>
+
+								<%								
+								for(int i = 1; i <= paginationSize; i++){%>
+								
+								<li
+									<% if(pageVo.getPage() == i){%>
+									class="active"
+									<%} %>
+								>
+								<% if(pageVo.getPage() == i){%>
+									<span><%=i %></span>
+								<%
+								}else{
+								%>
+								<a href="<%=request.getContextPath()%>/userPagingList?page=<%=i%>&pageSize=<%=pageVo.getPageSize()%>"><%=i %></a>
+								</li>
+								<%
+								}
+								%>
+								<%
+								}
+								%>
+								<%
+							if(pageVo.getPage() >= paginationSize){%>
+								<li class="disabled"><span>»</span></li>
+							<%
+							}else{
+							%>
+								<li>
+								<a href="<%=request.getContextPath()%>/userPagingList?page=<%=pageVo.getPage()+1%>&pageSize=<%=pageVo.getPageSize()%>">»</a>
+								</li>
+							<%} %>
+								
 							</ul>
 						</div>
 					</div>
