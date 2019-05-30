@@ -5,18 +5,18 @@
 <mapper namespace="user">
 
   <!-- 전체 사용자 리스트 조회 -->
-  <select id="userList" resultType="UserVo">
+  <select id="userList" resultType="userVo">
     select * from users order by userid
   </select>
   
   <!-- 특정 사용자 조회 -->
-  <select id="userInfo" resultType="UserVo" parameterType="String">
+  <select id="userInfo" resultType="userVo" parameterType="String">
   select * from users where USERID = #{userId}
   </select>
   
   <!-- 사용자 페이지 리스트 조회 -->
   <!-- pageVo int page, int pageSize -->  
-  <select id="userPagingList" parameterType="pageVo" resultType="UserVo">
+  <select id="userPagingList" parameterType="pageVo" resultType="userVo">
   <![CDATA[
 	select *
 	from

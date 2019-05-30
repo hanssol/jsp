@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.user.service.IuserService;
+import kr.or.ddit.user.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +45,15 @@ public class LoginController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
+	IuserService userService;
+	
+	
+	
+	@Override
+	public void init() throws ServletException {
+		userService = new UserService();
+	}
+
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
@@ -78,6 +89,7 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
 		// db에서 해당사용자의 정보 조회(service, dao)
+		UserVo uservo = userService.getUser(userId);
 		
 		// 해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사
 		// --> userId : brown 이고 password : brown1234라는 값일 때 통과, 그 이외 값은 불일치
@@ -85,7 +97,7 @@ public class LoginController extends HttpServlet {
 	
 		
 		// 일치하면 (로그인성공) : main 화면으로 이동
-		if(userId.equals("brown") && password.equals("brown1234")){
+		if(uservo!=null && userId.equals(uservo.getUserId()) && password.equals(uservo.getPass())){
 			
 			// remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다.
 			// remember 파라미터가 존재하지 않을 경우 userId, rememberme cookie 삭제한다.
@@ -107,7 +119,7 @@ public class LoginController extends HttpServlet {
 			// session에 사용자 정보를 넣어준다 (사용빈도가 높기때문에)
 //			request.getSession().setAttribute(name, value);
 			HttpSession session =request.getSession();
-			session.setAttribute("USER_INFO", new UserVo("브라운","brown","곰"));
+			session.setAttribute("USER_INFO", uservo);
 			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/main.jsp");
