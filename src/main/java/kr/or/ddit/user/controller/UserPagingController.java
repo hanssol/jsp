@@ -52,7 +52,7 @@ public class UserPagingController extends HttpServlet {
 		
 //		request.setAttribute("userPagingList", userList);
 		// 화면 출력을 담당하는 jsp에게 역할 위임
-		request.getRequestDispatcher("/user/userPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/user/userPageList.jsp").forward(request, response);
 		
 	}
 

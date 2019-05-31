@@ -1,6 +1,6 @@
 package kr.or.ddit.user.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class UserVo {
 	private String name;
@@ -14,6 +14,17 @@ public class UserVo {
 	private String path;
 	private String filename;
 	
+	
+	public UserVo(String name, String userId, String alias, String pass,
+			String addr1, String addr2, String zipcd, Date birth) {
+		this(name,userId,alias);
+		this.pass = pass;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcd = zipcd;
+		this.birth = birth;
+	}
+
 	public String getAddr1() {
 		return addr1;
 	}

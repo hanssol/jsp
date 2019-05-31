@@ -2,6 +2,8 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import kr.or.ddit.paging.model.PageVo;
@@ -141,5 +143,61 @@ public class UserDaoTest {
 		assertEquals(105, usersCnt);
 	}
 	
+	
+	/**
+	 * 
+	 * Method : insertUserTest
+	 * 작성자 : PC03
+	 * 변경이력 :
+	 * Method 설명 : 사용자 등록, 삭제 테스트
+	 */
+	@Test
+	public void insertUserTest(){
+		/***Given***/
+		// 사용자정보를 담고 있는 vo객체 준비
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+		UserVo userVo = null;
+		
+		try {
+			userVo = new UserVo("대덕인","userTest","중앙로","userTest1234","대전광역시 중구 중앙로76","영민빌딩 2층 204호","34940",sdf.parse("2019-05-31"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		/***When***/
+		// userDao.insertUser()
+		int insertCnt = userDao.insertUser(userVo);
+		
+		/***Then***/
+		// insertCnt(1)
+		assertEquals(1, insertCnt);
+		
+				
+		// data 삭제
+		// userDao.deleteUser(usreId);
+		int deleteCnt = userDao.deleteUser(userVo.getUserId());
+		
+		assertEquals(1, deleteCnt);
+	}
+	
+	@Test
+	public void updateUser(){
+		/***Given***/
+		SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+		UserVo userVo = null;
+		
+		try {
+			userVo = new UserVo("더더덕인","userTest","중앙로","userTest1234","대전광역시 중구 중앙로76","영민빌딩 2층 204호","34940",sdf.parse("2019-05-31"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		/***When***/
+		int updateUser = userDao.modifyUser(userVo);
+
+		/***Then***/
+		assertEquals(1, updateUser);
+	}
 
 }
