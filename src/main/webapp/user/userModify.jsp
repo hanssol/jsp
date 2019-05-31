@@ -152,7 +152,7 @@ function dataInit(){
 								<label for="birth" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
 									<input type="date" class="form-control" id="birth" name="birth"
-											placeholder="생일" value="${userInfo.birth }">
+											placeholder="생일" value="${userInfo.birthStr }">
 								</div>
 							</div>
 							
