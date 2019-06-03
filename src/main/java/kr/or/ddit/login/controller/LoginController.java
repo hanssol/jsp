@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IuserService;
 import kr.or.ddit.user.service.UserService;
@@ -88,16 +89,16 @@ public class LoginController extends HttpServlet {
 		// 사용자 파라미터 userId, password
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		String encryptPassword = KISA_SHA256.encrypt(password);
 		// db에서 해당사용자의 정보 조회(service, dao)
-		UserVo uservo = userService.getUser(userId);
 		
 		// 해당 사용자 정보를 이용하여 사용자가 보낸 userId, password가 일치하는지 검사
 		// --> userId : brown 이고 password : brown1234라는 값일 때 통과, 그 이외 값은 불일치
 		
-	
 		
 		// 일치하면 (로그인성공) : main 화면으로 이동
-		if(uservo!=null && userId.equals(uservo.getUserId()) && password.equals(uservo.getPass())){
+		UserVo uservo = userService.getUser(userId);
+		if(uservo!=null && userId.equals(uservo.getUserId()) && encryptPassword.equals(uservo.getPass())){
 			
 			// remember 파라미터가 존재할 경우 userId, rememberme cookie 설정해준다.
 			// remember 파라미터가 존재하지 않을 경우 userId, rememberme cookie 삭제한다.
