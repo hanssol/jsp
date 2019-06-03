@@ -95,7 +95,7 @@
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
-									<label class="control-label">fmt : <fmt:formatDate value="${userInfo.birth}" pattern="yyyy-MM-dd"/></label>
+									<label class="control-label"> <fmt:formatDate value="${userInfo.birth}" pattern="yyyy-MM-dd"/></label>
 								</div>
 							</div>
 							
