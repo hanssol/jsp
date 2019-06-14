@@ -58,6 +58,7 @@ public class LoginController extends HttpServlet {
 	// 사용자 로그인 화면 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginController doGet()");
+		logger.debug("parameter UNT_CD : {}",request.getParameter("UNT_CD"));
 		
 //		for(Cookie cookie : request.getCookies()){
 //			logger.debug("cookie : {}, {}", cookie.getName(),cookie.getValue());
@@ -83,8 +84,13 @@ public class LoginController extends HttpServlet {
 	// 로그인 요청을 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("parameter rememberme  : {}", request.getParameter("rememberme"));
-		logger.debug("parameter userId : {}",request.getParameter("userId") );
-		logger.debug("parameter password : {}",request.getParameter("password") );
+		logger.debug("parameter userId : {}",request.getParameter("userId"));
+		logger.debug("parameter password : {}",request.getParameter("password"));
+		logger.debug("parameter UNT_CD : {}",request.getParameter("UNT_CD"));
+		
+		
+		
+		
 		
 		// 사용자 파라미터 userId, password
 		String userId = request.getParameter("userId");

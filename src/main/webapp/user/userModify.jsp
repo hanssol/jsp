@@ -86,7 +86,7 @@ function dataInit(){
 						<h2 class="sub-header">사용자 수정</h2>
 					
 						<form id="frm" class="form-horizontal" role="form"
-							  action="${pageContext.request.contextPath }/userModify"
+							  action="${cp }/userModify"
 							  method="post" enctype="multipart/form-data">
 						<input type=hidden id="userId" name="userId" value="${userInfo.userId}"/>
 						

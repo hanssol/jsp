@@ -52,7 +52,7 @@ public class UserFormController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("UserForm doPost");
 		
-		request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8"); 필터 적용함
 		
 		
 		// 사용자 보낸 파라미터를 사용해서 UserVo 인스턴스를 만들어서

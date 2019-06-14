@@ -59,7 +59,7 @@ $(document).ready(function(){
 						<h2 class="sub-header">사용자</h2>
 						
 						<!-- 사용자 상세조회 : userId가 필요 -->
-						<form id="frm" action="${pageContext.request.contextPath }/user"
+						<form id="frm" action="${cp }/user"
 							  method="get">
 								<input type="hidden" id="userId" name="userId"/>
 						</form>
@@ -88,7 +88,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a href="${pageContext.request.contextPath}/userForm"class="btn btn-default pull-right">사용자 등록</a>
+						<a href="${cp}/userForm"class="btn btn-default pull-right">사용자 등록</a>
 						
 						<!-- 사용자수 : 105건
 							페이지네이션 : 11건
@@ -108,7 +108,7 @@ $(document).ready(function(){
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize}">«</a>
+										<a href="${cp}/userPagingList?page=${pageVo.page - 1}&pageSize=${pageVo.pageSize}">«</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 											<li class="active"><span>${i}</span></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${pageContext.request.contextPath}/userPagingList?page=${i}&pageSize=${pageVo.pageSize}">${i}</a></li>
+											<li><a href="${cp}/userPagingList?page=${i}&pageSize=${pageVo.pageSize}">${i}</a></li>
 										</c:otherwise>
 									</c:choose>
 
@@ -136,7 +136,7 @@ $(document).ready(function(){
 												<span> i </span>
 											</c:when> <c:otherwise>
 												<a
-													href="${pageContext.request.contextPath}/userPagingList?page=${i }>&pageSize=${pageVo.pageSize}">${i }</a>
+													href="${cp}/userPagingList?page=${i }>&pageSize=${pageVo.pageSize}">${i }</a>
 											</c:otherwise>
 										</li>
 									</c:choose>
@@ -149,7 +149,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<li>
-											<a href="${pageContext.request.contextPath}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize}">»</a>
+											<a href="${cp}/userPagingList?page=${pageVo.page + 1}&pageSize=${pageVo.pageSize}">»</a>
 										</li>
 									
 									</c:otherwise>
