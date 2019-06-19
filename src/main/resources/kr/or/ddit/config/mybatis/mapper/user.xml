@@ -31,10 +31,11 @@
   </select>
   
   <!-- 사용자 전체수 조회 -->
-  <select id="usersCnt" resultType="int">
-  	select count(*)
-	from users
-  </select>
+   <!-- 속도향상을 위해 튜닝 -->
+   <select id="usersCnt" resultType="int">
+      select /*+ INDEX_FFS(users PK_USERS)*/ count(*)
+      from users
+   </select>
   
   <!-- 사용자 등록 -->
   <insert id="insertUser" parameterType="userVo">
